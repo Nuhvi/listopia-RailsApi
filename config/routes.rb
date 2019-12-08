@@ -3,12 +3,7 @@ Rails.application.routes.draw do
   namespace  :api do
     namespace  :v1 do
       resources :postings, only: [:index]
-      resources :favorites, only: [:index]
-      resources :favorites do
-        member do
-          post :toggle
-        end
-      end
+      resources :favorites, only: [:index, :create, :destroy]
     end
   end
 end
