@@ -8,23 +8,23 @@ RSpec.describe Api::V1::PostingsController, type: :routing do
       expect(get: '/api/v1/postings').to route_to('api/v1/postings#index')
     end
 
-    it 'routes to #show' do
+    xit 'routes to #show' do
       expect(get: '/api/v1/postings/1').to route_to('api/v1/postings#show', id: '1')
     end
 
-    it 'routes to #create' do
+    xit 'routes to #create' do
       expect(post: '/api/v1/postings').to route_to('api/v1/postings#create')
     end
 
-    it 'routes to #update via PUT' do
+    xit 'routes to #update via PUT' do
       expect(put: '/api/v1/postings/1').to route_to('api/v1/postings#update', id: '1')
     end
 
-    it 'routes to #update via PATCH' do
+    xit 'routes to #update via PATCH' do
       expect(patch: '/api/v1/postings/1').to route_to('api/v1/postings#update', id: '1')
     end
 
-    it 'routes to #destroy' do
+    xit 'routes to #destroy' do
       expect(delete: '/api/v1/postings/1').to route_to('api/v1/postings#destroy', id: '1')
     end
   end

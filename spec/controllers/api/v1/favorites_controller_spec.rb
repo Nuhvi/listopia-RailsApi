@@ -52,4 +52,37 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
       expect(response).to be_successful
     end
   end
+
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Favorite' do
+        expect do
+          post :create, params: { posting_id: posting.id }, session: valid_session
+        end.to change(Favorite, :count).by(1)
+      end
+
+      it 'renders a JSON response with the new posting' do
+        post :create, params: { posting_id: posting.id }, session: valid_session
+        expect(response).to have_http_status(:created)
+        expect(response.content_type).to eq('application/json')
+      end
+    end
+
+    context 'with invalid params' do
+      it 'renders a JSON response with errors for the new posting' do
+        post :create, params: { posting_id: nil }, session: valid_session
+        expect(response).to have_http_status(:not_found)
+        expect(response.content_type).to eq('application/json')
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the requested favorite' do
+      Favorite.create! valid_attributes
+      expect do
+        delete :destroy, params: { id: posting.id }, session: valid_session
+      end.to change(Favorite, :count).by(-1)
+    end
+  end
 end
